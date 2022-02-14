@@ -1,15 +1,17 @@
 from django.shortcuts import render
-from . import models
+from . import models, forms
 from django.shortcuts import get_object_or_404
+from django.shortcuts import reverse, redirect
+from django.http import Http404, HttpResponse
 
-from django.http import Http404
 
 def get_shows_all(request):
-    shows = models.TVShow.objects.all()
+    shows = models.TVShow.objects.filter().order_by("-id")
     return render(request, "shows_list.html", {"shows": shows})
 
 
 def get_show_detail(request, id):
+    global comment
     try:
         show = get_object_or_404(models.TVShow, id=id)
         try:
@@ -19,3 +21,16 @@ def get_show_detail(request, id):
     except models.TVShow.DoesNotExist:
         raise Http404('TVSHOW does not exist, try another id')
     return render(request, "shows_detail.html", {"show": show, 'shows_comment': comment})
+
+
+def add_show(request):
+    method = request.method
+    if method == "POST":
+        form = forms.TVShowForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("shows:shows_list"))
+            # return HttpResponse("Show Created Successfully")
+    else:
+        form = forms.TVShowForm()
+    return render(request, "add_shows.html", {"form": form})
