@@ -1,8 +1,5 @@
-from django.shortcuts import render
 from . import models, forms
 from django.shortcuts import get_object_or_404
-from django.shortcuts import reverse, redirect
-from django.http import Http404, HttpResponse
 from django.views import generic
 
 
@@ -32,12 +29,16 @@ class ShowsDetailView(generic.DetailView):
 #     try:
 #         show = get_object_or_404(models.TVShow, id=id)
 #         try:
-#             comment = models.ShowComment.objects.filter(shows_id=id).order_by("created_date")
+#             comment = models.ShowComment.objects.filter(
+#             shows_id=id).order_by("created_date")
 #         except models.TVShow.DoesNotExist:
 #             print('No comments')
 #     except models.TVShow.DoesNotExist:
-#         raise Http404('TVSHOW does not exist, try another id')
-#     return render(request, "shows_detail.html", {"show": show, 'shows_comment': comment})
+#         raise Http404(
+#         'TVSHOW does not exist, try another id'
+#         )
+#     return render(request, "shows_detail.html",
+#     {"show": show, 'shows_comment': comment})
 
 
 class ShowsCreateView(generic.CreateView):

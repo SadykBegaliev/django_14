@@ -13,7 +13,7 @@ class TVShow(models.Model):
     )
     title = models.CharField(max_length=70)
     description = models.TextField()
-    image = models.ImageField(upload_to='')
+    image = models.ImageField(upload_to="")
     quantity = models.PositiveIntegerField()
     genre = models.CharField(max_length=70, choices=GENRE_CHOICE)
     created_date = models.DateField(auto_now_add=True)
@@ -27,5 +27,6 @@ class TVShow(models.Model):
 class ShowComment(models.Model):
     text = models.TextField()
     created_date = models.DateField(auto_now_add=True)
-    shows = models.ForeignKey(TVShow, on_delete=models.CASCADE,
-                              related_name="shows_comment")
+    shows = models.ForeignKey(
+        TVShow, on_delete=models.CASCADE, related_name="shows_comment"
+    )

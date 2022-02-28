@@ -1,9 +1,7 @@
-from django.http import HttpResponse
-from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import ListView, FormView
-from . import parser, models, forms
+from . import models, forms
 
 
 class ParserFormView(FormView):
@@ -15,13 +13,13 @@ class ParserFormView(FormView):
         if form.is_valid():
             form.parse_data()
             # return HttpResponse('Parser Success')
-            return redirect(reverse('parser:film_list'))
+            return redirect(reverse("parser:film_list"))
         else:
             return super(ParserFormView, self).post(request, *args, **kwargs)
 
 
 class FilmListView(ListView):
-    template_name = 'film.html'
+    template_name = "film.html"
     queryset = models.Film.objects.all()
 
     def get_queryset(self):

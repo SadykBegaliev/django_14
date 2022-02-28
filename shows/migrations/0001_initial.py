@@ -7,21 +7,42 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='TVShow',
+            name="TVShow",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=70)),
-                ('description', models.TextField()),
-                ('image', models.ImageField(upload_to='')),
-                ('quantity', models.PositiveIntegerField()),
-                ('genre', models.CharField(choices=[('Drama', 'Drama'), ('Romantic', 'Romantic'), ('Action', 'Action'), ('Historical', 'Historical'), ('Anime', 'Anime'), ('Comedy', 'Comedy'), ('Horror', 'Horror')], max_length=70)),
-                ('created_date', models.DateField(auto_now_add=True)),
-                ('updated_date', models.DateField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=70)),
+                ("description", models.TextField()),
+                ("image", models.ImageField(upload_to="")),
+                ("quantity", models.PositiveIntegerField()),
+                (
+                    "genre",
+                    models.CharField(
+                        choices=[
+                            ("Drama", "Drama"),
+                            ("Romantic", "Romantic"),
+                            ("Action", "Action"),
+                            ("Historical", "Historical"),
+                            ("Anime", "Anime"),
+                            ("Comedy", "Comedy"),
+                            ("Horror", "Horror"),
+                        ],
+                        max_length=70,
+                    ),
+                ),
+                ("created_date", models.DateField(auto_now_add=True)),
+                ("updated_date", models.DateField(auto_now=True)),
             ],
         ),
     ]
